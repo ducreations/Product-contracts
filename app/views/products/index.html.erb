@@ -1,0 +1,29 @@
+<%= link_to 'Home', root_path %>
+
+<h1>Products</h1>
+
+<%= link_to 'Add product', new_product_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Product</th>
+      <th>Status</th>
+      <th>Price</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <% if product.user == current_user %>
+        <tr>
+          <td></td>
+          <td><%= product.name %></td>
+          <td><%= product.status? ? "" : "pending" %></td>
+          <td>₱<%= product.price %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
