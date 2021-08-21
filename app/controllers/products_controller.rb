@@ -1,6 +1,12 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+    if params[:mode] == "owned"
+      @products = current_user.products
+    elsif params[:mode] == "offers"
+      @products = Product.where.not(user: current_user)
+    else
+      @products = Product.all
+    end
   end
 
   def new
@@ -21,6 +27,13 @@ class ProductsController < ApplicationController
     if @product.destroy
       redirect_to products_path, notice: "Product Removed!"
     end
+  end
+
+  def agree
+    current_user.contracts.create(
+      product_id: params[:id]
+    )
+    redirect_to products_path, notice: "Product Accepted"
   end
 
   private
