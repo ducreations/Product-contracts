@@ -1,0 +1,20 @@
+<h1>Contracts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product name</th>
+      <th>Product price</th>
+      <th>Contract date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @contracts.each do |contract| %>
+      <tr>
+        <td><%= contract.product.name %></td>
+        <td><%= contract.product.price %></td>
+        <td><%= contract.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,28 +1,31 @@
-<h1>Fill out the form</h1>
+<div class="container">
+  <h1>Fill out the form</h1>
 
-<%= form_for @product do |f| %>
-  <div class="field">
-    Product name<br />
-    <%= f.text_field :name, placeholder: "1 hectare lot", required: true, autofocus: true %>
-  </div><br />
+    <%= form_for @product do |f| %>
+      <div class="field">
+        Product name<br />
+        <%= f.text_field :name, placeholder: "1 hectare lot", required: true, autofocus: true, class:"form-control" %>
+      </div><br />
 
-  <div class="field">
-    Product status<br />
-    <%= f.text_field :status %>
-  </div><br />
+      <div class="field">
+        <%# Product status<br /> %>
+        <%= f.text_field :status, type: :hidden %>
+      </div>
 
-  <div class="field">
-    MSRP<br />
-    <%= f.text_field :price, placeholder: "₱ 1,000,000.00", required: true %>
-  </div><br />
+      <div class="field">
+        Manufacturer's Suggested Retail Price<br />
+        <%= f.text_field :price, placeholder: "₱ 1,000,000.00", required: true, class:"form-control" %>
+      </div><br />
 
-  <div class="field">
-    <%= f.number_field :user_id, value: current_user.id, type: :hidden %>
-  </div>
+      <div class="field">
+        <%# User id<br /> %>
+        <%= f.number_field :user_id, value: current_user.id, type: :hidden %>
+      </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div><br />
-<% end %>
+      <div class="actions">
+        <%= f.submit %>
+      </div><br />
+    <% end %>
 
-<%= link_to 'Cancel', products_path %>
+  <%= link_to 'Cancel', products_path %>
+</div>
